@@ -83,7 +83,7 @@ function Driver() {
       Math.sin(dLat/2) * Math.sin(dLat/2) +
       Math.cos(driverLocation.lat * Math.PI / 180) * Math.cos(rideLat * Math.PI / 180) * 
       Math.sin(dLon/2) * Math.sin(dLon/2);
-    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+    const c = 1.5 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
     return (R * c * 0.621371).toFixed(1); // Convert to miles
   };
 

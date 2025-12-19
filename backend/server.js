@@ -766,7 +766,7 @@ app.get('/api/distance/calculate', (req, res) => {
       parseFloat(lat2), parseFloat(lng2)
     );
     
-    const fare = Math.max(distanceMiles * 2 + 5, 10).toFixed(2);
+    const fare = Math.max(distanceMiles * 1.5, 10).toFixed(2);
     
     res.json({ 
       success: true,
