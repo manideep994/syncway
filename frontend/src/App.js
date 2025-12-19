@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
+import GoogleAd from "./GoogleAd";
+
 import { 
   Car, User, MapPin, Phone, X, Search, 
   Navigation, Mail, MessageCircle, Star, DollarSign, 
@@ -7,8 +9,8 @@ import {
 } from 'lucide-react';
 import io from 'socket.io-client';
 
-const API_URL = 'http://localhost:5000/api';
-const socket = io('http://localhost:5000');
+const API_URL = 'http://52.91.43.199:5000/api';
+const socket = io('http://52.91.43.199:5000');
 
 function App() {
   const [user, setUser] = useState(null);
@@ -123,7 +125,10 @@ function App() {
       setUser(userData);
       setEmailNotifications(userData.emailNotifications !== false);
       socket.emit('userConnected', userData.id);
+      loadInitialData(userData);
     }
+        
+
   }, []);
   
   // Socket event listeners
@@ -701,6 +706,7 @@ function App() {
             <div style={styles.termsHeaderLeft}>
               <Shield size={24} />
               <h2 style={styles.termsModalTitle}>Terms & Conditions</h2>
+
             </div>
             <button onClick={() => setShowTerms(false)} style={styles.closeButton}>
               <X size={24} />
@@ -888,7 +894,8 @@ function App() {
               <X size={24} />
             </button>
           </div>
-          
+                <GoogleAd adSlot="1234567890" style={{ display: "block", width: 300, height: 250 }} />
+
           <div style={styles.settingsSection}>
             <h3 style={styles.settingsSectionTitle}>Legal Information</h3>
             <div style={styles.legalCard}>
