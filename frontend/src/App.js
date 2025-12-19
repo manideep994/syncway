@@ -894,7 +894,7 @@ function App() {
               <X size={24} />
             </button>
           </div>
-                <GoogleAd adSlot="1234567890" style={{ display: "block", width: 300, height: 250 }} />
+                <GoogleAd adSlot="1180164733" style={{ display: "block", width: 300, height: 250 }} />
 
           <div style={styles.settingsSection}>
             <h3 style={styles.settingsSectionTitle}>Legal Information</h3>
@@ -932,16 +932,10 @@ function App() {
               <div style={styles.infoItem}>
                 <span style={styles.infoLabel}>Name:</span>
                 <span style={styles.infoValue}>{user.name}</span>
-              </div>
-              <div style={styles.infoItem}>
                 <span style={styles.infoLabel}>Phone:</span>
                 <span style={styles.infoValue}>{user.phone}</span>
-              </div>
-              <div style={styles.infoItem}>
                 <span style={styles.infoLabel}>Email:</span>
                 <span style={styles.infoValue}>{user.email || 'Not provided'}</span>
-              </div>
-              <div style={styles.infoItem}>
                 <span style={styles.infoLabel}>Account Type:</span>
                 <span style={styles.infoValue}>{user.userType}</span>
               </div>
@@ -960,7 +954,7 @@ function App() {
           
           <div style={styles.settingsActions}>
             <button onClick={() => setShowSettings(false)} style={styles.cancelButton}>
-              Back to App
+              Back to main
             </button>
             <button onClick={handleLogout} style={styles.logoutButton}>
               <LogOut size={18} /> Logout
@@ -998,14 +992,14 @@ function App() {
         </div>
         
         <div style={styles.headerCenter}>
-          <div style={styles.onlineCount}>
+          {/*<div style={styles.onlineCount}>
             <Users size={16} />
             <span>{onlineUsers.online} online</span>
           </div>
           <div style={styles.disclaimerBadge}>
             <AlertTriangle size={14} />
             <span>Use at own risk</span>
-          </div>
+          </div>*/}
         </div>
         
         <div style={styles.headerRight}>
@@ -1015,9 +1009,9 @@ function App() {
           <button onClick={() => setShowSettings(true)} style={styles.settingsButton}>
             <Settings size={18} />
           </button>
-          <button onClick={handleLogout} style={styles.logoutButton}>
+          {/*<button onClick={handleLogout} style={styles.logoutButton}>
             <LogOut size={18} /> Logout
-          </button>
+          </button>*/}
         </div>
       </header>
       
@@ -1155,8 +1149,6 @@ function App() {
                     onChange={(e) => setRideType(e.target.value)}
                   >
                     <option value="standard">Standard</option>
-                    <option value="shared">Shared</option>
-                    <option value="express">Express</option>
                   </select>
                 </div>
               </div>
@@ -1216,7 +1208,7 @@ function App() {
           {user.userType === 'user' && activeTab === 'myrides' && (
             <div style={styles.card}>
               <h2 style={styles.cardTitle}>My Rides</h2>
-              
+              <GoogleAd adSlot="1180164733" style={{ display: "block", width: 300, height: 250 }} />
               {myRides.length === 0 ? (
                 <div style={styles.emptyState}>
                   <p>No rides yet. Request your first ride!</p>
@@ -1390,7 +1382,8 @@ function App() {
                   fare collection, and compliance with all applicable laws.
                 </div>
               </div>
-              
+                              <GoogleAd adSlot="1180164733" style={{ display: "block", width: 300, height: 250 }} />
+
               {driverRides.length === 0 ? (
                 <div style={styles.emptyState}>
                   <p>No claimed rides yet.</p>
@@ -1923,21 +1916,26 @@ const styles = {
     minHeight: '100vh',
     background: '#f3f4f6'
   },
-  header: {
-    background: 'white',
-    borderBottom: '1px solid #e5e7eb',
-    padding: '16px 24px',
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    position: 'sticky',
-    top: 0,
-    zIndex: 100
-  },
+header: {
+  flexShrink: 0,
+  background: 'white',
+  borderBottom: '1px solid #e5e7eb',
+  padding: '12px 16px',
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  position: 'sticky',
+  top: 0,
+  zIndex: 100,
+  flexWrap: 'nowrap', // Keep in single line
+  overflowX: 'auto', // Allow horizontal scrolling if needed
+  whiteSpace: 'nowrap', // Prevent text wrapping
+  minHeight: '60px' // Fixed height
+},
   headerLeft: {
     display: 'flex',
     alignItems: 'center',
-    gap: '16px'
+    gap: '4px'
   },
   logo: {
     display: 'flex',
@@ -2132,6 +2130,7 @@ const styles = {
   },
   formRow: {
     display: 'flex',
+    flexDirection: 'column',
     gap: '16px'
   },
   rideSummary: {

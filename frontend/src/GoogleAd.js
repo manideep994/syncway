@@ -1,31 +1,40 @@
-// src/components/GoogleAd.js
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 const GoogleAd = ({ adSlot, style }) => {
-  useEffect(() => {
-    // Load AdSense script if not already loaded
-    if (!window.adsbygoogle) {
-      const script = document.createElement("script");
-      script.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js";
-      script.async = true;
-      script.setAttribute("data-ad-client", "ca-pub-4395008227700572"); // <-- Your Publisher ID
-      document.body.appendChild(script);
-    }
+  const adRef = useRef(null);
 
-    // Push the ad
-    try {
-      (window.adsbygoogle = window.adsbygoogle || []).push({});
-    } catch (e) {
-      console.error("Adsense error:", e);
+  useEffect(() => {
+    if (window && window.adsbygoogle && adRef.current) {
+      try {
+        (window.adsbygoogle = window.adsbygoogle || []).push({});
+      } catch (e) {
+        console.error("Adsense push error:", e);
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    // Load the AdSense script only once
+    if (!document.querySelector("script[src*='pagead2.googlesyndication.com']")) {
+      const script = document.createElement("script");
+      script.src =
+        "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js";
+      script.async = true;
+      script.setAttribute("data-ad-client", "ca-pub-4395008227700572"); // Your Publisher ID
+      script.crossOrigin = "anonymous";
+      document.body.appendChild(script);
     }
   }, []);
 
   return (
     <ins
+      ref={adRef}
       className="adsbygoogle"
-      style={style || { display: "block", width: 300, height: 250 }}
-data-ad-client="ca-pub-4395008227700572"
-      data-ad-slot={adSlot} // <-- Your Ad slot ID
+      style={style || { display: "block", textAlign: "center" }}
+      data-ad-client="ca-pub-4395008227700572"
+      data-ad-slot={adSlot}
+      data-ad-layout="in-article"
+      data-ad-format="fluid"
     ></ins>
   );
 };
