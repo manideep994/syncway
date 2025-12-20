@@ -9,8 +9,9 @@ import {
 } from 'lucide-react';
 import io from 'socket.io-client';
 
-const API_URL = 'http://52.91.43.199:5000/api';
-const socket = io('http://52.91.43.199:5000');
+const API_URL = 'http://3.94.119.72:5000/api';
+
+const socket = io('http://3.94.119.72:5000');
 
 function App() {
   const [user, setUser] = useState(null);
